@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+
+        <div class="row">
+            {# todo: dynamiser le titre du site #}
+            <h1 class="col-12 text-center my-5">Le Blog de Batman</h1>
+        </div>
+
+        <div class="row">
+            <h2 class="text-center col-12 my-4">Lorem ipsum dolor sit amet.</h2>
+
+            <p class="col-12 col-md-10 mx-auto text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus distinctio eaque enim error esse et ex excepturi inventore, ipsa ipsam itaque laudantium maxime mollitia nihil nisi odio omnis perferendis perspiciatis placeat praesentium quaerat quia quidem quisquam reprehenderit repudiandae sint unde?</p>
+
+        </div>
+
+        {#  affichage du bandeau avec l'image fixe #}
+        <div class="row my-5 batman-cover"></div>
+
+        {# todo: afficher les 3 derniers articles #}
+        <div class="row">
+
+        </div>
+
+        <div class="row mb-5">
+
+            <h2 class="col-12 col-md-10 mx-auto text-center mb-5">Lorem ipsum dolor sit amet, consectetur.</h2>
+
+            <p class="col-12 col-md-10 mx-auto text-center mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at atque aut blanditiis consequatur consequuntur cupiditate doloremque eligendi exercitationem expedita facere hic, illo ipsum iure, labore maiores minima obcaecati quasi quisquam reprehenderit ut veniam vitae.</p>
+
+        </div>
+
+    </div>
+
+{% endblock %}
