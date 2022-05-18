@@ -63,7 +63,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * Controleur
+     * Controleur de lpage permettant de voit un article en detail
      */
     #[Route('/publication/{id}/{slug}/', name: 'publication_view')]
     #[ParamConverter('article', options: [ 'mapping' => [ 'id' => 'id', 'slug' => 'slug' ] ])]
@@ -75,4 +75,22 @@ class BlogController extends AbstractController
         ]);
 
     }
+
+    /**
+     * Controleur de la page qui liste les articles
+     */
+    #[Route('/publication/liste/', name: 'publication_list')]
+    public function publicationList(ManagerRegistry $doctrine): Response
+    {
+
+        $articleRepo = $doctrine->getRepository(Article::class);
+
+        $articles = $articleRepo->findAll();
+
+        return $this->render('blog/publication_list.html.twig', [
+            'articles' => $articles,
+        ]);
+
+    }
+
 }
