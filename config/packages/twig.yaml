@@ -4,6 +4,10 @@ twig:
     # Activation du theme bootstrap 5 pour les formulaire du site
     form_themes: ['bootstrap_5_layout.html.twig']
 
+    globals:
+
+        site_name: 'Le blog de Batman'
+
 when@test:
     twig:
         strict_variables: true
