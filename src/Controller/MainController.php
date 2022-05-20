@@ -74,7 +74,7 @@ class MainController extends AbstractController
             ){
 
                 unlink($this->getParameter('app.user.photo.directory') . $this->getUser()->getPhoto());
-                
+
             }
 
             //Création d'un nouveau nom pour la photo
