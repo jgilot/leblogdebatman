@@ -39,6 +39,11 @@
 
                             <div class="mt-3">
 
+                                <a href="{{ path('blog_publication_edit', {'id' : article.id, }) }}" class="text-decoration-none text-warning me-3">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    Modifier
+                                </a>
+
                                 <a onclick="return confirm('Êtes-vous sur de vouloir supprimer cet article ?')" href="{{ path('blog_publication_delete', {'id': article.id, 'csrf_token' : csrf_token('blog_publication_delete_' ~ article.id)}) }}" class="text-decoration-none text-danger">
                                     <i class="fa-solid fa-trash-can"></i>
                                     Supprimer
