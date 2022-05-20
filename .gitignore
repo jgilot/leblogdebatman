@@ -11,4 +11,6 @@
 ###> exclusions custom ###
 .idea/
 /migrations/*.php
-###< exclusions custom
+/public/images/profils/*
+!public/images/profils/.gitignore
+###< exclusions custom ###
