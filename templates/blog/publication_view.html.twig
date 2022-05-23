@@ -100,6 +100,18 @@
 
                                 </div>
 
+                                {# Si l'utilisateur est admin, affichage d'un bouton de suppression du commentaire #}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <div class="admin-button-article">
+
+                                        <a class="text-danger text-decoration-none" href="{{ path('blog_comment_delete', {'id': comment.id, 'csrf_token': csrf_token('blog_comment_delete' ~ comment.id) }) }}" onclick="return confirm('Êtes vous sur de vouloir supprimer ce commentaire ?')">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                            Supprimer
+                                        </a>
+
+                                    </div>
+                                {% endif %}
+
                             </div>
                         </div>
 
