@@ -225,6 +225,10 @@ class BlogController extends AbstractController
 
         }
 
+        return $this->render('blog/publication_edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
     }
 
     /**
