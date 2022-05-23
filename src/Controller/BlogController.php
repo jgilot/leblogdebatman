@@ -71,16 +71,52 @@ class BlogController extends AbstractController
      */
     #[Route('/publication/{id}/{slug}/', name: 'publication_view')]
     #[ParamConverter('article', options: [ 'mapping' => [ 'id' => 'id', 'slug' => 'slug' ] ])]
-    public function publicationView(Article $article): Response
+    public function publicationView(Article $article, Request $request, ManagerRegistry $doctrine): Response
     {
 
         $newComment = new Comment();
 
         $form = $this->createForm(CreateCommentFormType::class, $newComment);
 
+        $form->handleRequest($request);
+
+        // Si le formulaire est envoyé et sans errerus
+        if ($form->isSubmitted() && $form->isValid()){
+
+            // Si l'utilisateur n'est pas connecté, appel direct de la vue en lui envoyant seulement l'article à afficher
+            // On fait ca pour eviter que le traitement du formulaire ne se fasse alors que la personne n'est pas connectée
+            if (!$this->getUser()){
+                return $this->render('blog/publication_view.html.twig', [
+                   'article' => $article,
+                ]);
+            }
+
+
+            $newComment
+                ->setPublicationDate(new \DateTime())
+                ->setAuthor($this->getUser())
+                ->setArticle( $article )
+            ;
+
+            $em = $doctrine->getManager();
+
+            $em->persist($newComment);
+            $em->flush();
+
+            $this->addFlash('success', 'Votre commentaire a été publié avec succès !');
+
+            // Réinitialisation des variables $form et $comment pour un nv formulaire vierge
+            unset($comment);
+            unset($form);
+
+            $newComment = new Comment();
+            $form = $this->createForm(CreateCommentFormType::class, $newComment);
+
+        }
+
         return $this->render('blog/publication_view.html.twig', [
             'article' => $article,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
 
     }

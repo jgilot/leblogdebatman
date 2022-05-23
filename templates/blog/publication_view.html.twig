@@ -106,7 +106,20 @@
                     {% else %}
                         <p class="text-center alert alert-info">Aucun commentaire n'a été publié pour le moment.</p>
                     {% endfor %}
+                    
+                    {# si l'utilisateur est connecté on affiche le dormulaire de cr"ation d'un nv commentaire #}
+                    {% if app.user %}
 
+                        <h2 class="text-center my-5">Écrire un commentaire</h2>
+                        {{ form( form ) }}
+
+                    {% else %}
+                        <p class="text-center text-info mt-4">
+                            Vous devez <a href="{{ path('app_login') }}">vous connecter</a> pour laisser un commentaire.
+                        </p>
+                    {% endif %}
+
+                    
                 </div>
 
             </div>
